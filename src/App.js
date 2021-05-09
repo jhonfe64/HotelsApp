@@ -1,23 +1,20 @@
 import logo from './logo.svg';
+import styled from  'styled-components';
 import './App.css';
+import Container from './elements/Container';
+import Jumbotron from './components/Jumbotron';
+import Filters from './components/Filters';
+import Results from './components/Results';
+import {FilterContextProvider} from './states/FilterContext';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Jumbotron/>
+      <FilterContextProvider>
+        <Filters />
+        <Results />
+      </FilterContextProvider>
     </div>
   );
 }
