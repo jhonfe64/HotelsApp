@@ -56,7 +56,7 @@ function FilterContextProvider({children}){
         )
     }
 
-    console.log(filterValues);
+    //console.log(filterValues);
 
     return (
         <FilterContext.Provider value={{filterValues, changeDateFrom, changeDateTo, changeCountry, changePrice, changeLarge}}>

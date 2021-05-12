@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Jumbo = styled.div`
     background-image: url("../images/hotel.jpg");
-    height: 80vh;
+    height: 60vh;
     background-repeat: no-repeat, repeat;
     background-position: center; 
     background-size: cover;
