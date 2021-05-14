@@ -5,24 +5,33 @@ import {FilterContext} from '../states/FilterContext';
 import {hotelsData} from '../data';
 import NotFound from './NotFound';
 
-//const today = new Date()
-//console.log(today.valueOf() + 432000000);
-const fecha = new Date();
-// availabilityFrom: today.valueOf(),
-// availabilityTo: today.valueOf() + 432000000, // 5 days
-//{dateFrom: "", dateTo: "", country: "Chile", price: "", large: true}
-
-
-//cuando carga filteredList es la lista inicial para enviarla
 function Results() {
     //context
     const {filterValues} = useContext(FilterContext);
     const [filteredList, setFilteredList] = useState([]);
-
+    const [dateFromUnix, setDateFromUnix] = useState('');
+    const [dateToUnix, setDateToUnix] = useState('');
 
     useEffect(()=>{
-
         console.log(filterValues);
+
+        //DATE FROM, from date picker
+        if(filterValues.dateFrom !== ''){
+            const dateFrom = new Date(filterValues.dateFrom);
+            console.log('DATEFROM', dateFrom);
+            const utcDateFrom = dateFrom.toUTCString();
+            const utcDateUnixFrom = new Date(utcDateFrom).getTime();
+            setDateFromUnix(utcDateUnixFrom);
+        }
+
+        //DATE TO, from date pickker
+        if(filterValues.dateTo !== ''){
+            const dateTo = new Date(filterValues.dateTo);
+            console.log('DATEFROM', dateTo);
+            const utcDateTo = dateTo.toUTCString();
+            const utcDateUnixTo = new Date(utcDateTo).getTime();
+            setDateToUnix(utcDateUnixTo);
+        }
 
         let filteredHotels = hotelsData.filter((country)=>{
             if(filterValues.country !== ''){
@@ -45,15 +54,25 @@ function Results() {
                 return hotelSize.rooms > 20;
             }
             return hotelSize;
-        })
-        setFilteredList(filteredHotels);
-        //console.log(filteredHotels)
+        }).filter((hotelBook)=>{
+            if(dateFromUnix !== '' && dateToUnix !== ''){
+                return dateFromUnix >= hotelBook.availabilityFrom && dateToUnix <= hotelBook.availabilityTo;
+            }
+            return hotelBook;
+            
+        });
         
-    }, [filterValues.country, filterValues.price, filterValues.dateFrom, filterValues.dateTo, filterValues.large]);
+        if(filterValues.dateFrom === ''){
+            setDateFromUnix('')
+        }
+        if(filterValues.dateTo === ''){
+            setDateToUnix('');
+        }
 
+        setFilteredList(filteredHotels);
+        
+    }, [filterValues.country, filterValues.price, filterValues.dateFrom , filterValues.dateTo, filterValues.large, dateFromUnix, dateToUnix, filterValues]);
 
-
-    /////////////////////////////
 
     return (
         <div>
@@ -62,9 +81,9 @@ function Results() {
             </Container>
             <Container d_flex wrap="true">
                 {
-                    filteredList.length > 0 ? <HotelCard hotelsData={filteredList}/> : <NotFound />
+                    filteredList.length > 0  ? <HotelCard hotelsData={filteredList}/> : <NotFound />
                 }
-            </Container>    
+            </Container>
         </div>
     )
 }
