@@ -21,6 +21,7 @@ on vsc console type:
 type on vsc console => npm start
 
 ## check in codesandbox https://codesandbox.io/s/github/jhonfe64/HotelsApp
+## check the app deployed in vercel https://hotelsapp-beige.vercel.app
 
 
 
