@@ -21,3 +21,8 @@ on vsc console type:
 type on vsc console => npm start
 
 
+
+
+![](https://github.com/jhonfe64/HotelsApp/blob/master/hotel1.jpg?raw=true)
+
+
