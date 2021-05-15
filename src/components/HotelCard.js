@@ -8,7 +8,7 @@ function HotelCard({hotelsData}){
             {
                 hotelsData.map((singleHotel)=>{
                     return (
-                        <HotelCardStyles>
+                        <HotelCardStyles key={singleHotel.name}>
                             <div>
                                 <div>
                                     <img src={singleHotel.photo} alt="" />

@@ -18,5 +18,11 @@
 
   .resultsTopmargin {
     margin-top: 220px;
-    transition: .3s;
+    transition: .2s;
   }
+
+  @media (max-width: 1072px){
+    .resultsTopmargin {
+      margin-top: 450px;
+    }
+}

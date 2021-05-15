@@ -23,6 +23,18 @@ const Jumbo = styled.div`
         display: inline-block;
         font-weight: 600;
     }
+
+    @media (max-width: 500px){
+        h1 {
+            font-size: 2.5rem !important;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2rem !important;
+            text-align: justify;
+        }
+    }
 `
 
 export default Jumbo;

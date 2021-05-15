@@ -68,21 +68,21 @@ function Filters() {
                 <FilterInput onChange={filters} name='dateFrom' type="date" value={filterValues.dateFrom} />
                 <FilterInput onChange={filters} name='dateTo' type="date"  value={filterValues.dateTo} />
                 <FilterInput onChange={filters} as='select' value={filterValues.country} name="country" id="">
-                    <option selected disabled value="">Pais</option>
+                    <option disabled value="">Pais</option>
                     <option value="Argentina">Argentina</option>
                     <option value="Brasil">Brazil</option>
                     <option value="Chile">Chile</option>
                     <option value="Uruguay">Uruguay</option>
                 </FilterInput>
                 <FilterInput onChange={filters} as='select' name="price" id="" value={filterValues.price}>
-                    <option selected disabled value="">Precio</option>
+                    <option disabled value="">Precio</option>
                     <option value="1">$</option>
                     <option value="2">$$</option>
                     <option value="3">$$$</option>
                     <option value="4">$$$$</option>
                 </FilterInput>
                 <FilterInput onChange={filters} as='select' name="large" id=""  value={filterValues.large}>
-                    <option disabled selected value="">Tamaño</option>
+                    <option disabled value="">Tamaño</option>
                     <option value="Grande">Grande</option>
                     <option value="Mediano">Mediano</option>
                     <option value="Pequeño">Pequeño</option>

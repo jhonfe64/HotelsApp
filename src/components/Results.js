@@ -82,7 +82,7 @@ function Results() {
 
 
     return (
-        <div className={jumboHeightState && 'resultsTopmargin'}>
+        <div className={jumboHeightState ? 'resultsTopmargin' : undefined}>
             <Container>
                 <h1>Resultados</h1>
             </Container>
