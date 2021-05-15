@@ -20,7 +20,7 @@ on vsc console type:
 
 type on vsc console => npm start
 
-## check in codesandbox https://codesandbox.io/s/zealous-silence-k5mxb
+## check in codesandbox https://codesandbox.io/s/github/jhonfe64/HotelsApp
 
 
 
