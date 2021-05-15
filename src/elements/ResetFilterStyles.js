@@ -3,8 +3,13 @@ import styled from 'styled-components';
 const ResetFilterStyles  = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 5px;
     cursor: context-menu;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #ecf0f1;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
      & div {
          margin-right: 20px;
          border-radius: 5px;

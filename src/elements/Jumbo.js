@@ -18,6 +18,11 @@ const Jumbo = styled.div`
     & > div p {
         font-size: 1.8rem ;
     }
+
+    & h3 {
+        display: inline-block;
+        font-weight: 600;
+    }
 `
 
 export default Jumbo;

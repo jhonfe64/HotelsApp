@@ -1,14 +1,19 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import FilterInput from '../elements/FilterInput';
 import Container from '../elements/Container';
 import {FilterContext} from '../states/FilterContext';
 import ResetFilterStyles from '../elements/ResetFilterStyles';
+import {JumboScrollContext} from '../states/JumbotronContext';
 
 function Filters() {
-    //Global context
-    const {filterValues, changeDateFrom, changeDateTo, changeCountry, changePrice,  changeLarge} = useContext(FilterContext);
 
-    //updating context
+    const {jumboHeightState} = useContext(JumboScrollContext);
+    console.log('ESTE ES EL ESTADO ACTUAL ', jumboHeightState)
+   
+    //Global context for filters
+    const {filterValues, changeDateFrom, changeDateTo, changeCountry, changePrice,  changeLarge} = useContext(FilterContext);
+  
+    //updating context filters
     const filters = (e) => {
         if(e.target.name === 'country'){
             changeCountry(e.target.value);
@@ -58,7 +63,7 @@ function Filters() {
 
 
     return (
-        <Container>
+        <Container className={jumboHeightState && 'fixed'}>
             <Container d_flex wrap="true" bg_white shadow rounded mt_30 p_30 mt_negative75>
                 <FilterInput onChange={filters} name='dateFrom' type="date" value={filterValues.dateFrom} />
                 <FilterInput onChange={filters} name='dateTo' type="date"  value={filterValues.dateTo} />
@@ -83,22 +88,25 @@ function Filters() {
                     <option value="Pequeño">Pequeño</option>
                 </FilterInput>
             </Container>
-            <ResetFilterStyles>
-                {filterValues.dateFrom && <div onClick={updateFilter}><h6 name="from">Desde: {filterValues.dateFrom}</h6></div>}
-                {filterValues.dateTo && <div onClick={updateFilter}><h6 name='to'>Hasta: {filterValues.dateTo}</h6></div>}
-                
-                {filterValues.country && <div onClick={updateFilter}><h6  name='country'>Pais: {filterValues.country}</h6></div>}
-                {filterValues.price === 1 && <div onClick={updateFilter}><h6 name='price'>Precio: $</h6></div>}
-                {filterValues.price === 2 && <div onClick={updateFilter}><h6 name='price'>Precio: $$</h6></div>}
-                {filterValues.price === 3 && <div onClick={updateFilter}><h6 name='price'>Precio: $$$</h6></div>}
-                {filterValues.price === 4 && <div onClick={updateFilter}><h6 name='price'>Precio: $$$$</h6></div>}
-                {filterValues.large && <div onClick={updateFilter}><h6 name='large'>Tamaño: {filterValues.large}</h6></div>}
+            {
+               filterValues.dateFrom || filterValues.dateTo  || filterValues.country || filterValues.price || filterValues.large ?
+               <ResetFilterStyles>
+                    {filterValues.dateFrom && <div onClick={updateFilter}><h6 name="from">Desde: {filterValues.dateFrom}</h6></div>}
+                    {filterValues.dateTo && <div onClick={updateFilter}><h6 name='to'>Hasta: {filterValues.dateTo}</h6></div>}
+                    
+                    {filterValues.country && <div onClick={updateFilter}><h6  name='country'>Pais: {filterValues.country}</h6></div>}
+                    {filterValues.price === 1 && <div onClick={updateFilter}><h6 name='price'>Precio: $</h6></div>}
+                    {filterValues.price === 2 && <div onClick={updateFilter}><h6 name='price'>Precio: $$</h6></div>}
+                    {filterValues.price === 3 && <div onClick={updateFilter}><h6 name='price'>Precio: $$$</h6></div>}
+                    {filterValues.price === 4 && <div onClick={updateFilter}><h6 name='price'>Precio: $$$$</h6></div>}
+                    {filterValues.large && <div onClick={updateFilter}><h6 name='large'>Tamaño: {filterValues.large}</h6></div>}
 
-                {
-                    filterValues.dateFrom || filterValues.dateTo  || filterValues.country || filterValues.price || filterValues.large ?
-                     <button onClick={resetInputs}>Reset</button>: ""
-                }
-            </ResetFilterStyles>
+                    {
+                        filterValues.dateFrom || filterValues.dateTo  || filterValues.country || filterValues.price || filterValues.large ?
+                            <button onClick={resetInputs}>Reset</button>: ""
+                    }
+                </ResetFilterStyles>: ""
+            }
            
         </Container>
     )

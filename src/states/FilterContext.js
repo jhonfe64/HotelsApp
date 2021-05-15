@@ -8,7 +8,7 @@ function FilterContextProvider({children}){
         dateTo: '',
         country: '',
         price: '',
-        large: ''
+        large: '',
     })
 
     const changeDateFrom = (dateFrom) => {
@@ -55,8 +55,6 @@ function FilterContextProvider({children}){
             }
         )
     }
-
-    //console.log(filterValues);
 
     return (
         <FilterContext.Provider value={{filterValues, changeDateFrom, changeDateTo, changeCountry, changePrice, changeLarge}}>

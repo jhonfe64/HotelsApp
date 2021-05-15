@@ -23,7 +23,8 @@ const Container = styled.div`
   `}
 
   ${props => props.shadow && css`
-    box-shadow: 1px 1px 7px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    border: 1px solid #ecf0f1;
 `}
 
 ${props => props.rounded && css`

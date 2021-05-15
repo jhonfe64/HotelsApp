@@ -1,18 +1,20 @@
-import logo from './logo.svg';
-import styled from  'styled-components';
 import './App.css';
-import Container from './elements/Container';
 import Jumbotron from './components/Jumbotron';
 import Filters from './components/Filters';
 import Results from './components/Results';
 import {FilterContextProvider} from './states/FilterContext';
+import {JumboScrollProvider} from './states/JumbotronContext';
 
 function App() {
+   const dates = new Date('2021-05-13');
+  console.log(dates);
   return (
     <div className="App">
-      <Jumbotron/>
       <FilterContextProvider>
-        <Filters />
+        <JumboScrollProvider>
+          <Jumbotron/>
+          <Filters />
+        </JumboScrollProvider>  
         <Results />
       </FilterContextProvider>
     </div>
