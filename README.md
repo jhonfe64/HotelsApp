@@ -20,6 +20,8 @@ on vsc console type:
 
 type on vsc console => npm start
 
+### ckeck in codesandbox https://codesandbox.io/s/zealous-silence-k5mxb
+
 
 
 
