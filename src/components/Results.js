@@ -56,7 +56,7 @@ function Results() {
             return hotelSize;
         }).filter((hotelBook)=>{
             if(dateFromUnix !== '' && dateToUnix !== ''){
-                return dateFromUnix >= hotelBook.availabilityFrom && dateToUnix <= hotelBook.availabilityTo;
+                return dateFromUnix+86400000 >= hotelBook.availabilityFrom && dateToUnix+86400000 <= hotelBook.availabilityTo;
             }
             return hotelBook;
             

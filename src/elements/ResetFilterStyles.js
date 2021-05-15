@@ -28,6 +28,20 @@ const ResetFilterStyles  = styled.div`
          border-radius: 5px;
          cursor: pointer;
      }
+
+     @media (max-width: 600px){
+        justify-content: space-between;
+        & div {
+            width: 100%;
+            margin-bottom: 20px;
+            margin-right: 0;
+        }
+
+        & button {
+            width: 100%;
+            padding: 5px 0px;
+        }
+    }
 `
 
 
