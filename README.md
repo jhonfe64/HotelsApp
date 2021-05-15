@@ -10,7 +10,7 @@ styled components
 
 ### To clone the repository
 
-on vsc consolty type: 
+on vsc console type: 
 
 - git clone https://github.com/jhonfe64/HotelsApp.git
 - Use npm i to install all dependences 
