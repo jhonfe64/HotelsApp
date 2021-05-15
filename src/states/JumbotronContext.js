@@ -22,8 +22,6 @@ function JumboScrollProvider({children}){
   
 }
 
-
-
 export {JumboScrollContext, JumboScrollProvider}
 
 

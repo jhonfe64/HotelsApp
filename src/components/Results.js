@@ -2,12 +2,19 @@ import React, {useEffect, useState, useContext} from 'react';
 import Container from '../elements/Container';
 import  HotelCard from './HotelCard';
 import {FilterContext} from '../states/FilterContext';
+import {JumboScrollContext} from '../states/JumbotronContext';
 import {hotelsData} from '../data';
 import NotFound from './NotFound';
 
+
+
 function Results() {
-    //context
+    //filter context
     const {filterValues} = useContext(FilterContext);
+    //jumbotron context
+    const {jumboHeightState} = useContext(JumboScrollContext);
+
+    
     const [filteredList, setFilteredList] = useState([]);
     const [dateFromUnix, setDateFromUnix] = useState('');
     const [dateToUnix, setDateToUnix] = useState('');
@@ -75,7 +82,7 @@ function Results() {
 
 
     return (
-        <div>
+        <div className={jumboHeightState && 'resultsTopmargin'}>
             <Container>
                 <h1>Resultados</h1>
             </Container>

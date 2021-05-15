@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React from 'react';
 import HotelCardStyles from '../elements/HotelCardStyles';
 
 

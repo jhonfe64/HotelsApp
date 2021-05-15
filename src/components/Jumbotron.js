@@ -14,8 +14,6 @@ function Jumbotron() {
     //4.para acceder al elemento debemos colocar refJumbo.current
     //5.console.log(refJumbo);
 
-    const [legibleDate, setLigibleDate] = useState('');
-
     //Contex scroll  
     const {changeJumboScrollState} = useContext(JumboScrollContext);
     //context 
@@ -31,12 +29,8 @@ function Jumbotron() {
         }
    }
 
-
    const legibleDateFrom  = (transformDate(filterValues.dateFrom));
    const legibleDateTo = (transformDate(filterValues.dateTo));
-
-   console.log(typeof legibleDate.day);
-
 
     let refJumbo = useRef();
 

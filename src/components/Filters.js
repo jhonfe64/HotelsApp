@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import FilterInput from '../elements/FilterInput';
 import Container from '../elements/Container';
 import {FilterContext} from '../states/FilterContext';
@@ -8,7 +8,7 @@ import {JumboScrollContext} from '../states/JumbotronContext';
 function Filters() {
 
     const {jumboHeightState} = useContext(JumboScrollContext);
-    console.log('ESTE ES EL ESTADO ACTUAL ', jumboHeightState)
+    console.log(jumboHeightState);
    
     //Global context for filters
     const {filterValues, changeDateFrom, changeDateTo, changeCountry, changePrice,  changeLarge} = useContext(FilterContext);

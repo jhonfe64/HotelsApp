@@ -13,9 +13,9 @@ function App() {
       <FilterContextProvider>
         <JumboScrollProvider>
           <Jumbotron/>
-          <Filters />
-        </JumboScrollProvider>  
+          <Filters />  
         <Results />
+        </JumboScrollProvider>
       </FilterContextProvider>
     </div>
   );
