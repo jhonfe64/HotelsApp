@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect, useContext} from 'react';
+import React, {useRef, useEffect, useContext} from 'react';
 import Container from '../elements/Container';
 import Jumbo from '../elements/Jumbo';
 import {JumboScrollContext} from '../states/JumbotronContext';
@@ -55,7 +55,7 @@ function Jumbotron() {
                     <h1>Reserve Ahora</h1>
                     {
                         filterValues.dateFrom && filterValues.dateTo ?
-                         <p>
+                         <div>
                              <h3>Desde: </h3> {
                                 legibleDateFrom.day+1 > 0 && legibleDateFrom.day+1 < 9 ? `0${legibleDateFrom.day+1} / `: `${legibleDateFrom.day+1} / ` 
                             }
@@ -69,7 +69,7 @@ function Jumbotron() {
                                 legibleDateTo.month+1 > 0 && legibleDateTo.month+1 < 9 ? `0${legibleDateTo.month+1} /`: `${legibleDateTo.month+1} / `
                             }  
                             { legibleDateTo.year}
-                        </p>
+                        </div>
                         :<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo repellat earum magni praesentium veniam iste quam iusto accusantium commodi!</p>
                     }
                   

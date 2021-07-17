@@ -6,8 +6,6 @@ import {FilterContextProvider} from './states/FilterContext';
 import {JumboScrollProvider} from './states/JumbotronContext';
 
 function App() {
-   const dates = new Date('2021-05-13');
-  console.log(dates);
   return (
     <div className="App">
       <FilterContextProvider>

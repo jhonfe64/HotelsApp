@@ -5,8 +5,7 @@ import {FilterContext} from '../states/FilterContext';
 import {JumboScrollContext} from '../states/JumbotronContext';
 import {hotelsData} from '../data';
 import NotFound from './NotFound';
-
-
+import DateWarningAlert from './DateWarningAlert';
 
 function Results() {
     //filter context
@@ -19,13 +18,57 @@ function Results() {
     const [dateFromUnix, setDateFromUnix] = useState('');
     const [dateToUnix, setDateToUnix] = useState('');
 
-    useEffect(()=>{
-        console.log(filterValues);
+    const [originalDayFrom, setOriginalDayFrom] = useState('');
+    const [originalMonthFrom, setOriginalMonthFrom] = useState('');
+    const [originalYearFrom, setOriginalYearFrom] = useState('');
 
+    const [originalDayTo, setOriginalDayTo] = useState('');
+    const [originalMonthTo, setOriginalMonthTo] = useState('');
+    const [originalYearTo, setOriginalYearTo] = useState('');
+
+    const [originalActualDay, setOriginalActualDay] = useState('');
+    const [originalActualMonth, setOriginalActualMont] = useState('');
+    const [originalActualYear, setOriginalActualYear] = useState('');
+
+    const [dateAlert, setDateAlert] = useState(false);
+    //si date from unix es menor que la fecha actual en unix mostrar una alerta que diga que seleccione otra fecha
+
+    console.log(filterValues.dateFrom);
+
+    useEffect(()=>{
+        const actualDate = new Date();
+      
+        setOriginalActualDay(actualDate.getDate())
+        setOriginalActualMont(actualDate.getMonth())
+        setOriginalActualYear(actualDate.getFullYear())
+    },[])
+   
+    //console.log(actualDateUnix);
+
+   useEffect(()=>{
+       if(originalDayFrom < originalActualDay || originalMonthFrom < originalActualMonth || originalYearFrom < originalActualYear){
+        setDateAlert(true);
+       }else{
+        setDateAlert(false);
+       }
+       if(filterValues.dateFrom === ""){
+        setDateAlert(false);
+       }
+   },[originalDayFrom, originalMonthFrom, originalYearFrom, filterValues.dateFrom])
+
+   useEffect(()=>{
+    console.log('estado actual de la alerta', dateAlert)
+   },[dateAlert])
+
+    useEffect(()=>{
         //DATE FROM, from date picker
         if(filterValues.dateFrom !== ''){
             const dateFrom = new Date(filterValues.dateFrom);
-            console.log('DATEFROM', dateFrom);
+
+            setOriginalDayFrom(dateFrom.getDate()+1);
+            setOriginalMonthFrom(dateFrom.getMonth());
+            setOriginalYearFrom(dateFrom.getFullYear());
+
             const utcDateFrom = dateFrom.toUTCString();
             const utcDateUnixFrom = new Date(utcDateFrom).getTime();
             setDateFromUnix(utcDateUnixFrom);
@@ -34,7 +77,11 @@ function Results() {
         //DATE TO, from date pickker
         if(filterValues.dateTo !== ''){
             const dateTo = new Date(filterValues.dateTo);
-            console.log('DATEFROM', dateTo);
+
+            setOriginalDayTo(dateTo.getDate()+1);
+            setOriginalMonthTo(dateTo.getMonth());
+            setOriginalYearTo(dateTo.getFullYear());
+
             const utcDateTo = dateTo.toUTCString();
             const utcDateUnixTo = new Date(utcDateTo).getTime();
             setDateToUnix(utcDateUnixTo);
@@ -81,6 +128,7 @@ function Results() {
     }, [filterValues.country, filterValues.price, filterValues.dateFrom , filterValues.dateTo, filterValues.large, dateFromUnix, dateToUnix, filterValues]);
 
 
+
     return (
         <div className={jumboHeightState ? 'resultsTopmargin' : undefined}>
             <Container>
@@ -88,7 +136,11 @@ function Results() {
             </Container>
             <Container d_flex wrap="true">
                 {
-                    filteredList.length > 0  ? <HotelCard hotelsData={filteredList}/> : <NotFound />
+                     dateAlert === true &&
+                    <DateWarningAlert/>
+                }
+                {
+                    filteredList.length > 0 ? <HotelCard hotelsData={filteredList}/> : <NotFound />
                 }
             </Container>
         </div>

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import FilterInput from '../elements/FilterInput';
 import Container from '../elements/Container';
 import {FilterContext} from '../states/FilterContext';
@@ -8,10 +8,17 @@ import {JumboScrollContext} from '../states/JumbotronContext';
 function Filters() {
 
     const {jumboHeightState} = useContext(JumboScrollContext);
-    console.log(jumboHeightState);
-   
+
     //Global context for filters
     const {filterValues, changeDateFrom, changeDateTo, changeCountry, changePrice,  changeLarge} = useContext(FilterContext);
+
+    const [dayFrom, setDayFrom] = useState('');
+    const [monthFrom, setMonthFrom] = useState('');
+    const [yearFrom, setYearFrom] = useState('');
+    
+    const [dayTo, setDayTo] = useState('');
+    const [monthTo, setMonthTo] = useState('');
+    const [yearTo, setYearTo] = useState('');
   
     //updating context filters
     const filters = (e) => {
@@ -27,6 +34,24 @@ function Filters() {
             changeDateTo(e.target.value);
         }
     }
+
+    //Date filters
+    useEffect(()=>{
+        const dateFrom = filterValues.dateFrom.split('-')
+        setDayFrom(dateFrom[2])
+        setMonthFrom(dateFrom[1])
+        setYearFrom(dateFrom[0])
+    },[filterValues.dateFrom])
+
+    useEffect(()=>{
+        const dateTo = filterValues.dateTo.split('-');
+        setDayTo(dateTo[2]);
+        setMonthTo(dateTo[1]);
+        setYearTo(dateTo[0])
+    },[filterValues.dateTo]);
+
+    
+
 
     //update context filters ResetFilterStyles
     const updateFilter = (e) => {
@@ -48,6 +73,7 @@ function Filters() {
         }
     }
 
+    //Reset filters
     const resetInputs = () => {
         filterValues.dateFrom = '';
         changeDateFrom('');
@@ -91,8 +117,9 @@ function Filters() {
             {
                filterValues.dateFrom || filterValues.dateTo  || filterValues.country || filterValues.price || filterValues.large ?
                <ResetFilterStyles>
-                    {filterValues.dateFrom && <div onClick={updateFilter}><h6 name="from">Desde: {filterValues.dateFrom}</h6></div>}
-                    {filterValues.dateTo && <div onClick={updateFilter}><h6 name='to'>Hasta: {filterValues.dateTo}</h6></div>}
+                    {/* filter tags */}
+                    {filterValues.dateFrom && <div onClick={updateFilter}><h6 name="from">Desde: {dayFrom}/{monthFrom}/{yearFrom}</h6></div>}
+                    {filterValues.dateTo && <div onClick={updateFilter}><h6 name='to'>Hasta: {dayTo}/{monthTo}/{yearTo}</h6></div>}
                     
                     {filterValues.country && <div onClick={updateFilter}><h6  name='country'>Pais: {filterValues.country}</h6></div>}
                     {filterValues.price === 1 && <div onClick={updateFilter}><h6 name='price'>Precio: $</h6></div>}
@@ -113,3 +140,8 @@ function Filters() {
 }
 
 export default Filters;
+
+
+
+
+
