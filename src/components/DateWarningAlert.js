@@ -1,11 +1,10 @@
 import React from 'react'
 import DateAlert from '../elements/DateAlert'
 
-function DateWarningAlert() {
+function DateWarningAlert({message}) {
     return (
         <DateAlert>
-            <h2>¡No puede seleccinar fechas anteriores a la actual!</h2>
-            <h2>Por favor seleccione otra fecha</h2>
+            <h2>{message}</h2>
         </DateAlert>
     )
 }

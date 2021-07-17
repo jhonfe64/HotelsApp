@@ -31,6 +31,7 @@ function Results() {
     const [originalActualYear, setOriginalActualYear] = useState('');
 
     const [dateAlert, setDateAlert] = useState(false);
+    const [alertDateTo, setDateTo] = useState(false);
     //si date from unix es menor que la fecha actual en unix mostrar una alerta que diga que seleccione otra fecha
 
     console.log(filterValues.dateFrom);
@@ -54,7 +55,15 @@ function Results() {
        if(filterValues.dateFrom === ""){
         setDateAlert(false);
        }
-   },[originalDayFrom, originalMonthFrom, originalYearFrom, filterValues.dateFrom])
+       if(originalDayTo < originalDayFrom  || originalMonthTo < originalMonthFrom || originalYearTo < originalYearFrom){
+        setDateTo(true)
+       }else{
+           setDateTo(false)
+       }
+       if(filterValues.dateFrom === ""){
+        setDateTo(false)
+       }
+   },[originalDayFrom, originalMonthFrom, originalYearFrom, filterValues.dateFrom, originalDayTo, originalMonthTo,  originalYearTo])
 
    useEffect(()=>{
     console.log('estado actual de la alerta', dateAlert)
@@ -137,7 +146,11 @@ function Results() {
             <Container d_flex wrap="true">
                 {
                      dateAlert === true &&
-                    <DateWarningAlert/>
+                    <DateWarningAlert message="¡No puede seleccinar fechas anteriores a la actual!"/>
+                }
+                {
+                    alertDateTo === true && originalDayTo &&
+                    <DateWarningAlert message="¡La fecha de reserva no pude ser menor que la inicial!"/>
                 }
                 {
                     filteredList.length > 0 ? <HotelCard hotelsData={filteredList}/> : <NotFound />
