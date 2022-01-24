@@ -6,11 +6,6 @@ import ResetFilterStyles from '../elements/ResetFilterStyles';
 import {JumboScrollContext} from '../states/JumbotronContext';
 
 function Filters() {
-
-    const actualDate = new Date();
-    const day =  actualDate.getDate();
-    const month = actualDate.getMonth();
-    const year = actualDate.getFullYear();
     
 
     const {jumboHeightState} = useContext(JumboScrollContext);

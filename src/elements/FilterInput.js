@@ -5,6 +5,7 @@ const FilterInput = styled.input`
     padding: 15px;
     font-size: 1rem;
     width: 200px;
+    background: none !important
 
     &:first-child {
         padding-left: 0;
