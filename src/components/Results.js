@@ -34,7 +34,6 @@ function Results() {
     const [alertDateTo, setDateTo] = useState(false);
     //si date from unix es menor que la fecha actual en unix mostrar una alerta que diga que seleccione otra fecha
 
-    console.log(filterValues.dateFrom);
 
     useEffect(()=>{
         const actualDate = new Date();
@@ -44,7 +43,6 @@ function Results() {
         setOriginalActualYear(actualDate.getFullYear())
     },[])
    
-    //console.log(actualDateUnix);
 
    useEffect(()=>{
        if(originalDayFrom < originalActualDay || originalMonthFrom < originalActualMonth || originalYearFrom < originalActualYear){
@@ -64,10 +62,6 @@ function Results() {
         setDateTo(false)
        }
    },[originalDayFrom, originalMonthFrom, originalYearFrom, filterValues.dateFrom, originalDayTo, originalMonthTo,  originalYearTo])
-
-   useEffect(()=>{
-    console.log('estado actual de la alerta', dateAlert)
-   },[dateAlert])
 
     useEffect(()=>{
         //DATE FROM, from date picker

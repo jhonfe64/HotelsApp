@@ -22,6 +22,9 @@ const Jumbo = styled.div`
     & h3 {
         display: inline-block;
         font-weight: 600;
+        &:last-child {
+            margin-left: 10px;
+        }
     }
 
     @media (max-width: 500px){
