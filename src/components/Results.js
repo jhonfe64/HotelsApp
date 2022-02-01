@@ -130,6 +130,8 @@ function Results() {
         
     }, [filterValues.country, filterValues.price, filterValues.dateFrom , filterValues.dateTo, filterValues.large, dateFromUnix, dateToUnix, filterValues]);
 
+    var fechaInicio = new Date(filterValues.dateFrom).getTime();
+    var fechaFin = new Date(filterValues.dateTo).getTime();
 
 
     return (
@@ -139,12 +141,7 @@ function Results() {
             </Container>
             <Container d_flex wrap="true">
                 {
-                     dateAlert === true &&
-                    <DateWarningAlert message="¡No puede seleccinar fechas anteriores a la actual!"/>
-                }
-                {
-                    alertDateTo === true && originalDayTo &&
-                    <DateWarningAlert message="¡La fecha de reserva no pude ser menor que la inicial!"/>
+                    fechaFin < fechaInicio  ? <DateWarningAlert message="¡La fecha final no puede ser menor que la inicial!"/> : ""
                 }
                 {
                     filteredList.length > 0 ? <HotelCard hotelsData={filteredList}/> : <NotFound />

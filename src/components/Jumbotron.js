@@ -75,7 +75,9 @@ function Jumbotron() {
             }
         });
     }, []);
-  
+
+    var fechaInicio = new Date(filterValues.dateFrom).getTime();
+    var fechaFin = new Date(filterValues.dateTo).getTime();
 
     return (
         //asignamos la referencia
@@ -84,7 +86,7 @@ function Jumbotron() {
                 <div>
                     <h1>Reserve Ahora</h1>
                     {
-                        filterValues.dateFrom && filterValues.dateTo ?
+                        filterValues.dateFrom && filterValues.dateTo && fechaFin >= fechaInicio ?
                          <div>
                              <h3> Hoteles {`${large && large + "s"}`} {price && price === 1 ? " de bajo costo": price === 2 ? " de costo medio": price === 3 ? " de costo alto":  price === 4 ? "de lujo": ""} {country && "en " + country} Desde el {`${legibleDateFrom.weekday} ${legibleDateFrom.day+1} de ${legibleDateFrom.month} de ${legibleDateFrom.year} `} </h3> 
                              <h3>Hasta el  {` ${legibleDateTo.weekday} ${legibleDateTo.day+1} de ${legibleDateTo.month} de ${legibleDateTo.year}`} </h3> 
